@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
@@ -27,20 +28,21 @@ public class PlayerMove : MonoBehaviour
     void Update()
     {
         float h = Input.GetAxisRaw("Horizontal");
+        bool isMoving = Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D);
 
-        // ▶ ① 이동 시 애니메이션
-        anim.SetFloat("Speed", Mathf.Abs(h));
+        if (anim.GetBool("isWalking") != isMoving)
+        {
+            anim.SetBool("isWalking", isMoving);
+        }
 
-        // ▶ ② 좌우 방향에 따라 캐릭터 반전 (선택사항)
         if (h != 0)
-            transform.localScale = new Vector3(h > 0 ? 1 : -1, 1, 1);
+            transform.localScale = new Vector3(h > 0 ? 2 : -2, 2, 2);
 
-        // ▶ ③ 점프 입력 처리
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && isGrounded)
         {
             rigid.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
             isGrounded = false;
-            anim.SetBool("IsJumping", true);
+            anim.SetBool("isJumping", true);
         }
     }
 
@@ -49,7 +51,7 @@ public class PlayerMove : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
-            anim.SetBool("IsJumping", false);
+            anim.SetBool("isJumping", false);
         }
     }
 }
