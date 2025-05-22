@@ -17,6 +17,9 @@ public class MiddleSlimeMove : MonoBehaviour
     {
         rigid = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+
+        int slimeLayer = LayerMask.NameToLayer("Enemy");
+        Physics2D.IgnoreLayerCollision(slimeLayer, slimeLayer);
     }
 
     private void FixedUpdate()
