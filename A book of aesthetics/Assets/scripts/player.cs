@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
-    // ÄÄÆ÷³ÍÆ® Ä³½Ì
     Rigidbody2D rigid;
     Animator anim;
     SpriteRenderer sprite;
@@ -17,13 +16,13 @@ public class PlayerMove : MonoBehaviour
     public float hitRecoverTime = 0.5f;
 
     [Header("Attack")]
-    public float attackDuration = 0.4f;    // ÀüÃ¼ ¾Ö´Ï ±æÀÌ
-    public float attackDelay = 0.2f;    // È÷Æ® ½ÃÁ¡ µô·¹ÀÌ
-    public Transform attackPoint;           // È÷Æ®¹Ú½º À§Ä¡
+    public float attackDuration = 0.4f;  
+    public float attackDelay = 0.2f;    
+    public Transform attackPoint;         
     public float attackRange = 1.0f;
     public LayerMask enemyLayers;
 
-    // ³»ºÎ »óÅÂ
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     bool isGrounded = false;
     bool isBeingHit = false;
     bool isAttacking = false;
@@ -35,30 +34,29 @@ public class PlayerMove : MonoBehaviour
         anim = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
 
-        // attackPoint°¡ ¾øÀ¸¸é ÀÚ±â À§Ä¡¸¦ ±âº»À¸·Î »ç¿ë
+        // attackPointï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ú±ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½âº»ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
         if (attackPoint == null)
         {
-            Debug.LogWarning("[PlayerMove] attackPoint°¡ ÇÒ´çµÇÁö ¾Ê¾Ò½À´Ï´Ù. ±âº»°ªÀ¸·Î ÀÚ±â ÀÚ½ÅÀÇ transform »ç¿ë.");
+            Debug.LogWarning("[PlayerMove] attackPointï¿½ï¿½ ï¿½Ò´ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¾Ò½ï¿½ï¿½Ï´ï¿½. ï¿½âº»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ú±ï¿½ ï¿½Ú½ï¿½ï¿½ï¿½ transform ï¿½ï¿½ï¿½.");
             attackPoint = transform;
         }
     }
 
     void Update()
     {
-        // ÇÇ°Ý ¶Ç´Â °ø°Ý ÁßÀÌ¸é ¸ðµç ÀÔ·Â ¹«½Ã
         if (isBeingHit || isAttacking)
             return;
 
-        // 1) ÁÂ¿ì ÀÌµ¿ ÀÔ·Â
+        // 1) ï¿½Â¿ï¿½ ï¿½Ìµï¿½ ï¿½Ô·ï¿½
         h = Input.GetAxisRaw("Horizontal");
         bool isMoving = h != 0f;
         anim.SetBool("isWalking", isMoving);
 
-        // flipX·Î ÁÂ¿ì ¹ÝÀü (½ºÄÉÀÏ °íÁ¤)
+        // flipXï¿½ï¿½ ï¿½Â¿ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
         if (isMoving)
             sprite.flipX = (h < 0f);
 
-        // 2) Á¡ÇÁ ÀÔ·Â
+        // 2) ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½
         if ((Input.GetKeyDown(KeyCode.Space)
              || Input.GetKeyDown(KeyCode.W)
              || Input.GetKeyDown(KeyCode.UpArrow))
@@ -69,7 +67,7 @@ public class PlayerMove : MonoBehaviour
             anim.SetBool("isJumping", true);
         }
 
-        // 3) °ø°Ý ÀÔ·Â
+        // 3) ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½
         if (Input.GetKeyDown(KeyCode.Z))
         {
             StartCoroutine(HandleAttack());
@@ -78,7 +76,7 @@ public class PlayerMove : MonoBehaviour
 
     void FixedUpdate()
     {
-        // ÇÇ°Ý¡¤°ø°Ý ÁßÀÌ ¾Æ´Ò ¶§¸¸ ÀÌµ¿
+        // ï¿½Ç°Ý¡ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
         if (!isBeingHit && !isAttacking)
         {
             rigid.velocity = new Vector2(h * moveSpeed, rigid.velocity.y);
@@ -87,14 +85,14 @@ public class PlayerMove : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // ¶¥ ÂøÁö Ã³¸®
+        // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
         if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
             anim.SetBool("isJumping", false);
         }
 
-        // ½½¶óÀÓ(Enemy) ÇÇ°Ý Ã³¸®
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(Enemy) ï¿½Ç°ï¿½ Ã³ï¿½ï¿½
         if (!isBeingHit && collision.gameObject.CompareTag("Enemy"))
         {
             StartCoroutine(HandleHit(collision.transform));
@@ -106,7 +104,7 @@ public class PlayerMove : MonoBehaviour
         isBeingHit = true;
         anim.SetBool("isHit", true);
 
-        // ³Ë¹é ¹æÇâ °è»ê ¹× Àû¿ë
+        // ï¿½Ë¹ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         Vector2 dir = (transform.position - enemy.position).normalized;
         rigid.velocity = Vector2.zero;
         rigid.AddForce((dir + Vector2.up) * knockbackForce, ForceMode2D.Impulse);
@@ -122,18 +120,16 @@ public class PlayerMove : MonoBehaviour
         isAttacking = true;
         anim.SetTrigger("Attack");
 
-        // È÷Æ® ½ÃÁ¡ ´ë±â ÈÄ ÆÇÁ¤
         yield return new WaitForSeconds(attackDelay);
         DoHit();
 
-        // ¾Ö´Ï¸ÞÀÌ¼Ç Á¾·á±îÁö ´ë±â
         yield return new WaitForSeconds(attackDuration - attackDelay);
         isAttacking = false;
     }
 
     void DoHit()
     {
-        // È÷Æ®¹Ú½º ¹üÀ§ ³» ¸ðµç Àû °Ë»ç
+        // ï¿½ï¿½Æ®ï¿½Ú½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ë»ï¿½
         Collider2D[] hits = Physics2D.OverlapCircleAll(
             attackPoint.position, attackRange, enemyLayers);
 
@@ -141,13 +137,13 @@ public class PlayerMove : MonoBehaviour
         {
             if (col.CompareTag("Enemy"))
             {
-                // SendMessage·Î ´øÁö¸é ÄÄÆ÷³ÍÆ®°¡ ¾ø¾îµµ ¹«½Ã
+                // SendMessageï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½îµµ ï¿½ï¿½ï¿½ï¿½
                 col.SendMessage("TakeDamage", 1, SendMessageOptions.DontRequireReceiver);
             }
         }
     }
 
-    // È÷Æ®¹Ú½º ½Ã°¢È­ (µð¹ö±×¿ë)
+    // ï¿½ï¿½Æ®ï¿½Ú½ï¿½ ï¿½Ã°ï¿½È­ (ï¿½ï¿½ï¿½ï¿½×¿ï¿½)
     void OnDrawGizmosSelected()
     {
         if (attackPoint == null) return;
