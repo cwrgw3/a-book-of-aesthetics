@@ -728,6 +728,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 233c7070171b42b48acea2ff45670aec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 3
+  damageKnockbackForce: 10
   jumpPower: 6
   movePower: 4
   jumpDelay: 1
@@ -873,6 +875,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1163856202}
+  - component: {fileID: 1163856203}
   m_Layer: 0
   m_Name: attackPoint
   m_TagString: Untagged
@@ -895,6 +898,41 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1170400635}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &1163856203
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1163856201}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 512
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1.5
 --- !u!1 &1170400633
 GameObject:
   m_ObjectHideFlags: 0
@@ -909,6 +947,7 @@ GameObject:
   - component: {fileID: 1170400638}
   - component: {fileID: 1170400636}
   - component: {fileID: 1170400637}
+  - component: {fileID: 1170400640}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1017,17 +1056,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9d49e934b4f51c4faee3448e91a4ed1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackPoint: {fileID: 1170400635}
+  attack1Duration: 0.2
+  attack2Duration: 0.2
   moveSpeed: 10
   jumpPower: 12
-  knockbackForce: 8
   hitRecoverTime: 0.5
-  attackDuration: 0.4
-  attackDelay: 0.2
-  attackPoint: {fileID: 1170400635}
-  attackRange: 1
-  enemyLayers:
-    serializedVersion: 2
-    m_Bits: 512
 --- !u!50 &1170400638
 Rigidbody2D:
   serializedVersion: 4
@@ -1100,6 +1134,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 1.35}
   m_EdgeRadius: 0
+--- !u!114 &1170400640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1170400633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c875d8188fdf5ad46b6e7da044887e6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 5
+  hitKnockbackForce: 10
 --- !u!1 &1464422170
 GameObject:
   m_ObjectHideFlags: 0
@@ -1293,6 +1341,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 233c7070171b42b48acea2ff45670aec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 3
+  damageKnockbackForce: 10
   jumpPower: 6
   movePower: 4
   jumpDelay: 1
