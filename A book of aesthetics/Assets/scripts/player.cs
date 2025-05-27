@@ -22,7 +22,6 @@ public class PlayerMove : MonoBehaviour
     public float attackRange = 1.0f;
     public LayerMask enemyLayers;
 
-    // ���� ����
     bool isGrounded = false;
     bool isBeingHit = false;
     bool isAttacking = false;
@@ -34,10 +33,9 @@ public class PlayerMove : MonoBehaviour
         anim = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
 
-        // attackPoint�� ������ �ڱ� ��ġ�� �⺻���� ���
         if (attackPoint == null)
         {
-            Debug.LogWarning("[PlayerMove] attackPoint�� �Ҵ���� �ʾҽ��ϴ�. �⺻������ �ڱ� �ڽ��� transform ���.");
+            Debug.LogWarning("[PlayerMove] attackPoint");
             attackPoint = transform;
         }
     }
@@ -47,16 +45,13 @@ public class PlayerMove : MonoBehaviour
         if (isBeingHit || isAttacking)
             return;
 
-        // 1) �¿� �̵� �Է�
         h = Input.GetAxisRaw("Horizontal");
         bool isMoving = h != 0f;
         anim.SetBool("isWalking", isMoving);
 
-        // flipX�� �¿� ���� (������ ����)
         if (isMoving)
             sprite.flipX = (h < 0f);
 
-        // 2) ���� �Է�
         if ((Input.GetKeyDown(KeyCode.Space)
              || Input.GetKeyDown(KeyCode.W)
              || Input.GetKeyDown(KeyCode.UpArrow))
@@ -67,7 +62,6 @@ public class PlayerMove : MonoBehaviour
             anim.SetBool("isJumping", true);
         }
 
-        // 3) ���� �Է�
         if (Input.GetKeyDown(KeyCode.Z))
         {
             StartCoroutine(HandleAttack());
@@ -76,7 +70,6 @@ public class PlayerMove : MonoBehaviour
 
     void FixedUpdate()
     {
-        // �ǰݡ����� ���� �ƴ� ���� �̵�
         if (!isBeingHit && !isAttacking)
         {
             rigid.velocity = new Vector2(h * moveSpeed, rigid.velocity.y);
@@ -85,14 +78,12 @@ public class PlayerMove : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // �� ���� ó��
         if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
             anim.SetBool("isJumping", false);
         }
 
-        // ������(Enemy) �ǰ� ó��
         if (!isBeingHit && collision.gameObject.CompareTag("Enemy"))
         {
             StartCoroutine(HandleHit(collision.transform));
@@ -104,7 +95,6 @@ public class PlayerMove : MonoBehaviour
         isBeingHit = true;
         anim.SetBool("isHit", true);
 
-        // �˹� ���� ��� �� ����
         Vector2 dir = (transform.position - enemy.position).normalized;
         rigid.velocity = Vector2.zero;
         rigid.AddForce((dir + Vector2.up) * knockbackForce, ForceMode2D.Impulse);
@@ -129,7 +119,6 @@ public class PlayerMove : MonoBehaviour
 
     void DoHit()
     {
-        // ��Ʈ�ڽ� ���� �� ��� �� �˻�
         Collider2D[] hits = Physics2D.OverlapCircleAll(
             attackPoint.position, attackRange, enemyLayers);
 
@@ -137,13 +126,11 @@ public class PlayerMove : MonoBehaviour
         {
             if (col.CompareTag("Enemy"))
             {
-                // SendMessage�� ������ ������Ʈ�� ��� ����
                 col.SendMessage("TakeDamage", 1, SendMessageOptions.DontRequireReceiver);
             }
         }
     }
 
-    // ��Ʈ�ڽ� �ð�ȭ (����׿�)
     void OnDrawGizmosSelected()
     {
         if (attackPoint == null) return;
