@@ -7,12 +7,16 @@
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\scripts\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\a-book-of-aesthetics\\A book of aesthetics\\Assets\\scripts\\Enemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\scripts\\Enemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\a-book-of-aesthetics\\A book of aesthetics\\Assets\\scripts\\Middle_Slime.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\scripts\\Middle_Slime.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\a-book-of-aesthetics\\A book of aesthetics\\Assets\\scripts\\PlayerHealth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\scripts\\PlayerHealth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\a-book-of-aesthetics\\A book of aesthetics\\Assets\\scripts\\Enemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\scripts\\Enemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\a-book-of-aesthetics\\A book of aesthetics\\Assets\\scripts\\CameraFollow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -26,11 +30,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
+              "Title": "PlayerHealth.cs",
+              "DocumentMoniker": "D:\\a-book-of-aesthetics\\A book of aesthetics\\Assets\\scripts\\PlayerHealth.cs",
+              "RelativeDocumentMoniker": "Assets\\scripts\\PlayerHealth.cs",
+              "ToolTip": "D:\\a-book-of-aesthetics\\A book of aesthetics\\Assets\\scripts\\PlayerHealth.cs",
+              "RelativeToolTip": "Assets\\scripts\\PlayerHealth.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAAwCkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-27T22:44:33.323Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "Enemy.cs",
               "DocumentMoniker": "D:\\a-book-of-aesthetics\\A book of aesthetics\\Assets\\scripts\\Enemy.cs",
               "RelativeDocumentMoniker": "Assets\\scripts\\Enemy.cs",
@@ -38,12 +55,11 @@
               "RelativeToolTip": "Assets\\scripts\\Enemy.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-26T22:59:07.153Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-26T22:59:07.153Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "CameraFollow.cs",
               "DocumentMoniker": "D:\\a-book-of-aesthetics\\A book of aesthetics\\Assets\\scripts\\CameraFollow.cs",
               "RelativeDocumentMoniker": "Assets\\scripts\\CameraFollow.cs",
@@ -51,18 +67,17 @@
               "RelativeToolTip": "Assets\\scripts\\CameraFollow.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-21T20:06:13.449Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-21T20:06:13.449Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "Middle_Slime.cs",
               "DocumentMoniker": "D:\\a-book-of-aesthetics\\A book of aesthetics\\Assets\\scripts\\Middle_Slime.cs",
               "RelativeDocumentMoniker": "Assets\\scripts\\Middle_Slime.cs",
               "ToolTip": "D:\\a-book-of-aesthetics\\A book of aesthetics\\Assets\\scripts\\Middle_Slime.cs",
               "RelativeToolTip": "Assets\\scripts\\Middle_Slime.cs",
-              "ViewState": "AgIAADYAAAAAAAAAAAAAwFEAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-21T16:53:34.815Z",
               "EditorCaption": ""
@@ -75,7 +90,7 @@
               "RelativeDocumentMoniker": "Assets\\scripts\\player.cs",
               "ToolTip": "D:\\a-book-of-aesthetics\\A book of aesthetics\\Assets\\scripts\\player.cs",
               "RelativeToolTip": "Assets\\scripts\\player.cs",
-              "ViewState": "AgIAAIIAAAAAAAAAAAAAwJMAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAH0AAAAAAAAAAAAAwI4AAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-13T01:43:56.661Z",
               "EditorCaption": ""
