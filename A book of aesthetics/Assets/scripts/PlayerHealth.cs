@@ -8,7 +8,7 @@ public class PlayerHealth : MonoBehaviour
     int currentHealth;
 
     [Header("Hit Knockback")]
-    public float hitKnockbackForce = 8f;
+    public float hitKnockbackForce = 5f;
 
     Rigidbody2D rigid;
 

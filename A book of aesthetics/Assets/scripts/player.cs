@@ -67,7 +67,12 @@ public class PlayerMove : MonoBehaviour
         h = Input.GetAxisRaw("Horizontal");
         bool isMoving = (h != 0f);
         anim.SetBool("isWalking", isMoving);
-        if (isMoving) sprite.flipX = (h < 0f);
+        if (isMoving)
+            sprite.flipX = (h < 0f);
+            
+            Vector3 localPos = attackPoint.localPosition;
+            localPos.x = Mathf.Abs(localPos.x) * (sprite.flipX ? -1 : 1);
+            attackPoint.localPosition = localPos;
 
         if ((Input.GetKeyDown(KeyCode.Space) ||
              Input.GetKeyDown(KeyCode.W) ||
