@@ -9,7 +9,7 @@ public class PlayerMove : MonoBehaviour
     SpriteRenderer sprite;
 
     [Header("Combo Attack (Trigger)")]
-    public Transform attackPoint;         // °ø°İ ¹üÀ§¿ë Æ®¸®°Å ¿ÀºêÁ§Æ®
+    public Transform attackPoint;         // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
     public float attack1Duration = 0.2f;
     public float attack2Duration = 0.2f;
 
@@ -20,12 +20,14 @@ public class PlayerMove : MonoBehaviour
     [Header("Hit / Recover")]
     public float hitRecoverTime = 0.5f;
 
-    // ³»ºÎ »óÅÂ
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     bool isGrounded = false;
     bool isBeingHit = false;
     bool isAttacking = false;
     bool queuedCombo = false;
     float h = 0f;
+
+    private CircleCollider2D attackCol;
 
     void Awake()
     {
@@ -33,16 +35,20 @@ public class PlayerMove : MonoBehaviour
         anim = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
 
-        if (attackPoint == null)
-            attackPoint = transform;
+
+        // attackPointë¥¼ GetChildë¡œ ê°€ì ¸ì˜¤ê³ , ì½œë¼ì´ë”ë„ ì°¸ì¡°
+        attackPoint = transform.GetChild(0); // ìì‹ ìˆœì„œì— ë”°ë¼ ì¸ë±ìŠ¤ë¥¼ ì¡°ì •í•˜ì„¸ìš”
+        attackCol = attackPoint.GetComponent<CircleCollider2D>();
+        attackCol.enabled = false; // ì´ˆê¸°ì—ëŠ” ë¹„í™œì„±í™”
     }
+
 
     void Update()
     {
-        // ÇÇ°İ ÁßÀÌ¸é ¸ğµç ÀÔ·Â ¹«½Ã
+        // ï¿½Ç°ï¿½ ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ ï¿½ï¿½ï¿½ï¿½
         if (isBeingHit) return;
 
-        // °ø°İ ¸ğ¼Ç Áß¿£ ÄŞº¸ Å¥¸¸
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ß¿ï¿½ ï¿½Şºï¿½ Å¥ï¿½ï¿½
         if (isAttacking)
         {
             if (Input.GetKeyDown(KeyCode.Z) && !queuedCombo)
@@ -50,14 +56,14 @@ public class PlayerMove : MonoBehaviour
             return;
         }
 
-        // Ã¹ °ø°İ ½ÃÀÛ
+        // Ã¹ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         if (Input.GetKeyDown(KeyCode.Z))
         {
             StartCoroutine(HandleComboAttack());
             return;
         }
 
-        // ¦¡¦¡¦¡ ÀÌµ¿ & Á¡ÇÁ ¦¡¦¡¦¡
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ & ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         h = Input.GetAxisRaw("Horizontal");
         bool isMoving = (h != 0f);
         anim.SetBool("isWalking", isMoving);
@@ -82,13 +88,13 @@ public class PlayerMove : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-        // ÂøÁö Ã³¸®
+        // ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
         if (col.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
             anim.SetBool("isJumping", false);
         }
-        // ½½¶óÀÓ(Enemy)¿Í Ãæµ¹ ½Ã ÇÇ°İ Ã³¸®
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(Enemy)ï¿½ï¿½ ï¿½æµ¹ ï¿½ï¿½ ï¿½Ç°ï¿½ Ã³ï¿½ï¿½
         else if (!isBeingHit && col.gameObject.CompareTag("Enemy"))
         {
             StartCoroutine(HandleHit(col.transform));
@@ -100,8 +106,8 @@ public class PlayerMove : MonoBehaviour
         isBeingHit = true;
         anim.SetBool("isHit", true);
 
-        // ÇÊ¿äÇÑ °æ¿ì ÇÃ·¹ÀÌ¾î ³Ë¹é & Ã¼·Â Ã³¸® È£Ãâ
-        // ¿¹: playerHealth.TakeDamage(1, enemy.position);
+        // ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½Ë¹ï¿½ & Ã¼ï¿½ï¿½ Ã³ï¿½ï¿½ È£ï¿½ï¿½
+        // ï¿½ï¿½: playerHealth.TakeDamage(1, enemy.position);
 
         yield return new WaitForSeconds(hitRecoverTime);
 
@@ -114,21 +120,24 @@ public class PlayerMove : MonoBehaviour
         isAttacking = true;
         queuedCombo = false;
 
-        // 1´Ü °ø°İ
+        attackCol.enabled = true; // ê³µê²© ì‹œì‘ ì‹œ í™œì„±í™”
+
         anim.Play("PlayerAttack1", 0, 0f);
         yield return new WaitForSeconds(attack1Duration);
 
-        // 2´Ü ÄŞº¸
         if (queuedCombo)
         {
             anim.Play("PlayerAttack2", 0, 0f);
             yield return new WaitForSeconds(attack2Duration);
         }
 
+        attackCol.enabled = false; // ê³µê²© ëë‚˜ë©´ ë¹„í™œì„±í™”
         isAttacking = false;
     }
 
-    // Æ®¸®°Å ±â¹İ È÷Æ® ÆÇÁ¤
+
+
+    // Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.CompareTag("Enemy")) return;
@@ -140,7 +149,7 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
-    // µğ¹ö±×¿ë: °ø°İ ¹üÀ§ ½Ã°¢È­
+    // ï¿½ï¿½ï¿½ï¿½×¿ï¿½: ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½È­
     void OnDrawGizmosSelected()
     {
         if (attackPoint == null) return;
