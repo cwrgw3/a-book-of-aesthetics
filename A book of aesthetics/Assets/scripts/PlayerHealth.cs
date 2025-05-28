@@ -8,7 +8,7 @@ public class PlayerHealth : MonoBehaviour
     int currentHealth;
 
     [Header("Hit Knockback")]
-    public float hitKnockbackForce = 10f;
+    public float hitKnockbackForce = 8f;
 
     Rigidbody2D rigid;
 
@@ -20,14 +20,16 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(int damage, Vector2 sourcePosition)
     {
-        // Ã¼·Â Â÷°¨
+        // Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         currentHealth -= damage;
         Debug.Log($"Player HP = {currentHealth}/{maxHealth}");
 
-        // ³Ë¹é
+        // ï¿½Ë¹ï¿½
         Vector2 dir = ((Vector2)transform.position - sourcePosition).normalized;
         rigid.velocity = Vector2.zero;
-        rigid.AddForce(dir * hitKnockbackForce, ForceMode2D.Impulse);
+        // rigid.AddForce(dir * hitKnockbackForce, ForceMode2D.Impulse);
+        rigid.AddForce((dir + Vector2.up) * hitKnockbackForce, ForceMode2D.Impulse);
+
 
         if (currentHealth <= 0)
             Die();
@@ -36,6 +38,6 @@ public class PlayerHealth : MonoBehaviour
     void Die()
     {
         Debug.Log("Player Died");
-        // Á×À½ Ã³¸® (¸®½ºÆù, °ÔÀÓ ¿À¹ö µî)
+        // ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½)
     }
 }

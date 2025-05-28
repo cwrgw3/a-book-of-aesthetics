@@ -107,7 +107,8 @@ public class PlayerMove : MonoBehaviour
         anim.SetBool("isHit", true);
 
         // �ʿ��� ��� �÷��̾� �˹� & ü�� ó�� ȣ��
-        // ��: playerHealth.TakeDamage(1, enemy.position);
+        // ��: playerHealth.TakeDamage(1, enemy.position); 이석환이 이것만 잘 해뒀어도...
+        GetComponent<PlayerHealth>().TakeDamage(1, enemy.position);
 
         yield return new WaitForSeconds(hitRecoverTime);
 
@@ -134,6 +135,7 @@ public class PlayerMove : MonoBehaviour
         attackCol.enabled = false; // 공격 끝나면 비활성화
         isAttacking = false;
     }
+
 
 
 
