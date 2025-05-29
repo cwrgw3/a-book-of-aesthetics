@@ -9,7 +9,7 @@ public class PlayerMove : MonoBehaviour
     SpriteRenderer sprite;
 
     [Header("Combo Attack (Trigger)")]
-    public Transform attackPoint;         // ���� ������ Ʈ���� ������Ʈ
+    public Transform attackPoint;         // 공격 판정용 트리거 오브젝트
     public float attack1Duration = 0.2f;
     public float attack2Duration = 0.2f;
 
@@ -20,7 +20,7 @@ public class PlayerMove : MonoBehaviour
     [Header("Hit / Recover")]
     public float hitRecoverTime = 0.5f;
 
-    // ���� ����
+    // 내부 상태
     bool isGrounded = false;
     bool isBeingHit = false;
     bool isAttacking = false;
@@ -35,20 +35,17 @@ public class PlayerMove : MonoBehaviour
         anim = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
 
-
-        // attackPoint를 GetChild로 가져오고, 콜라이더도 참조
-        attackPoint = transform.GetChild(0); // 자식 순서에 따라 인덱스를 조정하세요
+        // attackPoint 셋업
+        if (attackPoint == null) attackPoint = transform.GetChild(0);
         attackCol = attackPoint.GetComponent<CircleCollider2D>();
-        attackCol.enabled = false; // 초기에는 비활성화
+        attackCol.enabled = false;
     }
-
 
     void Update()
     {
-        // �ǰ� ���̸� ��� �Է� ����
         if (isBeingHit) return;
 
-        // ���� ��� �߿� �޺� ť��
+        // 공격 중 콤보 예약
         if (isAttacking)
         {
             if (Input.GetKeyDown(KeyCode.Z) && !queuedCombo)
@@ -56,23 +53,24 @@ public class PlayerMove : MonoBehaviour
             return;
         }
 
-        // ù ���� ����
+        // 첫 공격 시작
         if (Input.GetKeyDown(KeyCode.Z))
         {
             StartCoroutine(HandleComboAttack());
             return;
         }
 
-        // ������ �̵� & ���� ������
+        // ─── 이동 & 점프 ───
         h = Input.GetAxisRaw("Horizontal");
         bool isMoving = (h != 0f);
         anim.SetBool("isWalking", isMoving);
         if (isMoving)
             sprite.flipX = (h < 0f);
-            
-            Vector3 localPos = attackPoint.localPosition;
-            localPos.x = Mathf.Abs(localPos.x) * (sprite.flipX ? -1 : 1);
-            attackPoint.localPosition = localPos;
+
+        // attackPoint 좌우 위치 보정
+        Vector3 localPos = attackPoint.localPosition;
+        localPos.x = Mathf.Abs(localPos.x) * (sprite.flipX ? -1 : 1);
+        attackPoint.localPosition = localPos;
 
         if ((Input.GetKeyDown(KeyCode.Space) ||
              Input.GetKeyDown(KeyCode.W) ||
@@ -91,16 +89,14 @@ public class PlayerMove : MonoBehaviour
             rigid.velocity = new Vector2(h * moveSpeed, rigid.velocity.y);
     }
 
-    private void OnCollisionEnter2D(Collision2D col)
+    void OnCollisionEnter2D(Collision2D col)
     {
-        // ���� ó��
-        if (col.gameObject.CompareTag("Ground"))
+        if (col.collider.CompareTag("Ground"))
         {
             isGrounded = true;
             anim.SetBool("isJumping", false);
         }
-        // ������(Enemy)�� �浹 �� �ǰ� ó��
-        else if (!isBeingHit && col.gameObject.CompareTag("Enemy"))
+        else if (!isBeingHit && col.collider.CompareTag("Enemy"))
         {
             StartCoroutine(HandleHit(col.transform));
         }
@@ -111,9 +107,8 @@ public class PlayerMove : MonoBehaviour
         isBeingHit = true;
         anim.SetBool("isHit", true);
 
-        // �ʿ��� ��� �÷��̾� �˹� & ü�� ó�� ȣ��
-        // ��: playerHealth.TakeDamage(1, enemy.position); 이석환이 이것만 잘 해뒀어도...
-        GetComponent<PlayerHealth>().TakeDamage(1, enemy.position);
+        // 플레이어 넉백 & 체력 감소
+        GetComponent<PlayerHealth>()?.TakeDamage(1, enemy.position);
 
         yield return new WaitForSeconds(hitRecoverTime);
 
@@ -126,37 +121,47 @@ public class PlayerMove : MonoBehaviour
         isAttacking = true;
         queuedCombo = false;
 
-        attackCol.enabled = true; // 공격 시작 시 활성화
+        // 공격 트리거 콜라이더 활성화
+        attackCol.enabled = true;
 
+        // 1단 공격
         anim.Play("PlayerAttack1", 0, 0f);
         yield return new WaitForSeconds(attack1Duration);
 
+        // 2단 콤보
         if (queuedCombo)
         {
             anim.Play("PlayerAttack2", 0, 0f);
             yield return new WaitForSeconds(attack2Duration);
         }
 
-        attackCol.enabled = false; // 공격 끝나면 비활성화
+        // 콜라이더 비활성화
+        attackCol.enabled = false;
         isAttacking = false;
     }
 
-
-
-
-    // Ʈ���� ��� ��Ʈ ����
+    /// <summary>
+    /// AttackPoint 트리거와 Collectible 트리거를 모두 처리
+    /// </summary>
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!other.CompareTag("Enemy")) return;
-
-        var slime = other.GetComponent<MiddleSlimeMove>();
-        if (slime != null)
+        // 적 공격 판정
+        if (other.CompareTag("Enemy"))
         {
-            slime.TakeDamage(1, transform.position);
+            var slime = other.GetComponent<MiddleSlimeMove>();
+            if (slime != null)
+                slime.TakeDamage(1, transform.position);
+        }
+        // 아이템(Collectible) 수집 처리
+        else if (other.CompareTag("Collectible"))
+        {
+            // UIManager를 통해 우측 상단 숫자 업데이트
+            UIManager.Instance.AddCollectible(1);
+            Destroy(other.gameObject);
         }
     }
 
-    // ����׿�: ���� ���� �ð�ȭ
+    // 디버그용: 공격 범위 시각화
     void OnDrawGizmosSelected()
     {
         if (attackPoint == null) return;

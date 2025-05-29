@@ -4,10 +4,13 @@ public class MiddleSlimeMove : MonoBehaviour
 {
     [Header("Health")]
     public int maxHealth = 3;    // 최대 체력
-    int currentHealth;               // 현재 체력
+    int currentHealth;          // 현재 체력
 
     [Header("Damage Knockback")]
     public float damageKnockbackForce = 10f;  // 피격 시 넉백 힘
+
+    [Header("Drop Item")]
+    public GameObject collectiblePrefab;      // 죽을 때 생성할 아이템 프리팹
 
     [Header("Move / Jump")]
     public float jumpPower = 5f;
@@ -15,26 +18,24 @@ public class MiddleSlimeMove : MonoBehaviour
     public float jumpDelay = 1f;
     public LayerMask groundLayer;
 
-    private Rigidbody2D rigid;
-    private Animator anim;
-    private bool movingRight = false;
-    private bool isGrounded = false;
-    private float jumpTimer = 0f;
+    Rigidbody2D rigid;
+    Animator anim;
+    bool movingRight = false;
+    bool isGrounded = false;
+    float jumpTimer = 0f;
 
-    private void Awake()
+    void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        currentHealth = maxHealth;
 
-        // 레이어 충돌 무시
+        // 같은 레이어끼리 충돌 무시
         int slimeLayer = LayerMask.NameToLayer("Enemy");
         Physics2D.IgnoreLayerCollision(slimeLayer, slimeLayer);
-
-        // 체력 초기화
-        currentHealth = maxHealth;
     }
 
-    private void FixedUpdate()
+    void FixedUpdate()
     {
         if (isGrounded)
         {
@@ -51,7 +52,7 @@ public class MiddleSlimeMove : MonoBehaviour
         FlipDirection();
     }
 
-    private void Jump()
+    void Jump()
     {
         float dir = movingRight ? 1f : -1f;
         rigid.velocity = new Vector2(dir * movePower, jumpPower);
@@ -60,23 +61,24 @@ public class MiddleSlimeMove : MonoBehaviour
         anim.SetTrigger("Jump");
     }
 
-    private bool IsGroundAhead()
+    bool IsGroundAhead()
     {
         Vector2 origin = (Vector2)transform.position + Vector2.right * (movingRight ? 0.5f : -0.5f);
         Vector2 down = Vector2.down;
         float distance = 1.5f;
         Debug.DrawRay(origin, down * distance, Color.red);
-        return Physics2D.Raycast(origin, down, distance, groundLayer);
+        RaycastHit2D hit = Physics2D.Raycast(origin, down, distance, groundLayer);
+        return hit.collider != null;
     }
 
-    private void FlipDirection()
+    void FlipDirection()
     {
         transform.localScale = new Vector3(movingRight ? -1f : 1f, 1f, 1f);
     }
 
-    private void OnCollisionEnter2D(Collision2D col)
+    void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.CompareTag("Ground"))
+        if (col.collider.CompareTag("Ground"))
         {
             isGrounded = true;
             anim.SetBool("isGrounded", true);
@@ -84,29 +86,30 @@ public class MiddleSlimeMove : MonoBehaviour
     }
 
     /// <summary>
-    /// 외부에서 SendMessage 또는 GetComponent<...>().TakeDamage 로 호출
+    /// 외부(플레이어)에서 호출: 데미지 적용, 넉백, 사망 처리
     /// </summary>
-    /// <param name="damage">데미지값</param>
-    /// <param name="sourcePos">공격원 위치 (넉백 방향 계산용)</param>
     public void TakeDamage(int damage, Vector2 sourcePos)
     {
-        // 체력 차감
+        // 1) 체력 감소
         currentHealth -= damage;
         Debug.Log($"Slime HP: {currentHealth}/{maxHealth}");
 
-        // 넉백
+        // 2) 넉백
         Vector2 knockDir = ((Vector2)transform.position - sourcePos).normalized;
         rigid.velocity = Vector2.zero;
         rigid.AddForce(knockDir * damageKnockbackForce, ForceMode2D.Impulse);
 
-        // 사망 체크
+        // 3) 사망 처리
         if (currentHealth <= 0)
             Die();
     }
 
-    private void Die()
+    void Die()
     {
-        // 이펙트나 사운드를 추가하고 싶으면 여기에!
+        // 아이템 드롭
+        if (collectiblePrefab != null)
+            Instantiate(collectiblePrefab, transform.position, Quaternion.identity);
+        // 슬라임 제거
         Destroy(gameObject);
     }
 }
