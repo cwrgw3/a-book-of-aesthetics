@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "D:\\a-book-of-aesthetics\\A book of aesthetics\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\a-book-of-aesthetics\\A book of aesthetics\\Assets\\scripts\\PlayerHealth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\scripts\\PlayerHealth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\a-book-of-aesthetics\\A book of aesthetics\\Assets\\scripts\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\scripts\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\a-book-of-aesthetics\\A book of aesthetics\\Assets\\scripts\\Middle_Slime.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\scripts\\Middle_Slime.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\a-book-of-aesthetics\\A book of aesthetics\\Assets\\scripts\\PlayerHealth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\scripts\\PlayerHealth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\a-book-of-aesthetics\\A book of aesthetics\\Assets\\scripts\\Enemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -30,17 +30,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "PlayerHealth.cs",
               "DocumentMoniker": "D:\\a-book-of-aesthetics\\A book of aesthetics\\Assets\\scripts\\PlayerHealth.cs",
               "RelativeDocumentMoniker": "Assets\\scripts\\PlayerHealth.cs",
               "ToolTip": "D:\\a-book-of-aesthetics\\A book of aesthetics\\Assets\\scripts\\PlayerHealth.cs",
               "RelativeToolTip": "Assets\\scripts\\PlayerHealth.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAAwCkAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAACkAAAAAAAAAAAAAwDcAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-27T22:44:33.323Z",
               "EditorCaption": ""
@@ -71,7 +71,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Middle_Slime.cs",
               "DocumentMoniker": "D:\\a-book-of-aesthetics\\A book of aesthetics\\Assets\\scripts\\Middle_Slime.cs",
               "RelativeDocumentMoniker": "Assets\\scripts\\Middle_Slime.cs",
@@ -79,18 +79,17 @@
               "RelativeToolTip": "Assets\\scripts\\Middle_Slime.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-21T16:53:34.815Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-21T16:53:34.815Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "player.cs",
               "DocumentMoniker": "D:\\a-book-of-aesthetics\\A book of aesthetics\\Assets\\scripts\\player.cs",
               "RelativeDocumentMoniker": "Assets\\scripts\\player.cs",
               "ToolTip": "D:\\a-book-of-aesthetics\\A book of aesthetics\\Assets\\scripts\\player.cs",
               "RelativeToolTip": "Assets\\scripts\\player.cs",
-              "ViewState": "AgIAAH0AAAAAAAAAAAAAwI4AAAAWAAAAAAAAAA==",
+              "ViewState": "AgIAAI0AAAAAAAAAAAAAwKgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-13T01:43:56.661Z",
               "EditorCaption": ""
