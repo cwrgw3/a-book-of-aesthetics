@@ -94,6 +94,74 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
+  - time: 0
+    functionName: DeleteAndType
+    data: "\uACE0\uB300\uC758 \uB300\uB959 \uCE7C\uD058\uB77C\uC5D0\uB294"
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.9166666
+    functionName: DeleteAndType
+    data: "\uC804\uC124\uC801\uC778 \uC11C\uC801"
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 3.25
+    functionName: DeleteAndType
+    data: "\uBBF8\uC801\uC758 \uC11C\uAC00 \uC874\uC7AC\uD55C\uB2E4."
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 5.0833335
+    functionName: DeleteAndType
+    data: "\uC774 \uCC45\uC744 \uD1B5\uD574 \uC0AC\uB78C\uB4E4\uC740 \uB9C8\uBC95\uC744
+      \uC0AC\uC6A9\uD560 \uC218 \uC788\uC5C8\uACE0"
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 8.5
+    functionName: DeleteAndType
+    data: "\uC218\uB9CE\uC740 \uD559\uC790\uC640 \uB9C8\uBC95\uC0AC\uB4E4\uC774 \uC774\uB97C
+      \uBC1C\uC804\uC2DC\uCF1C\uC654\uB2E4."
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 11.833333
+    functionName: DeleteAndType
+    data: "\uD558\uC9C0\uB9CC \uC5B4\uB290 \uB0A0, \uBBF8\uC801\uC758 \uC11C\uAC00
+      \uD63C\uB3C8\uC758 \uAD70\uC8FC \uC778\uD14C\uADF8\uB784\uC5D0 \uC758\uD574
+      \uCC22\uACA8\uC84C\uB2E4."
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 16.5
+    functionName: DeleteAndType
+    data: "\uBBF8\uC801\uC758 \uC11C\uAC00 \uC0AC\uB77C\uC9C4 \uC774\uD6C4"
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 18.75
+    functionName: DeleteAndType
+    data: "\uB300\uB959\uC740 \uD63C\uB3C8\uC5D0 \uBE60\uC9C0\uAC8C \uB418\uC5C8\uC73C\uB2C8"
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 21.333334
+    functionName: DeleteAndType
+    data: "\uC774 \uC138\uACC4\uB97C \uAD6C\uD558\uAE30 \uC704\uD574\uC11C\uB294
+      \uBBF8\uC801\uC758 \uC11C\uB97C \uB418\uCC3E\uC544\uC57C \uD55C\uB2E4."
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 25.083334
     functionName: LetDarkness
     data: 

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 351fd4fa3fca92841a878a4fbb6a7954
+guid: 83324b89274310041abb8d9b1e505f30
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -100,10 +100,10 @@ TextureImporter:
       name: YOU DIED_Background_0
       rect:
         serializedVersion: 2
-        x: 106
-        y: 244
-        width: 868
-        height: 210
+        x: 0
+        y: 229
+        width: 1080
+        height: 234
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,8 +111,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f739c50004f068c418dbe43e88b9bc8a
-      internalID: 657411478
+      spriteID: e0b92f5170848fc418eb5d43877195c4
+      internalID: -1898204748
       vertices: []
       indices: 
       edges: []
@@ -128,7 +128,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      YOU DIED_Background_0: 657411478
+      YOU DIED_Background_0: -1898204748
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

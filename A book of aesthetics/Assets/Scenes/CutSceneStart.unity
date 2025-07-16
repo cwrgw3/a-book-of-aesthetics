@@ -450,6 +450,7 @@ GameObject:
   - component: {fileID: 549617372}
   - component: {fileID: 549617375}
   - component: {fileID: 549617376}
+  - component: {fileID: 549617377}
   m_Layer: 0
   m_Name: CutSceneStart1
   m_TagString: Untagged
@@ -655,6 +656,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 510486901}
   ChangedNextScene: SlimeScene
+--- !u!114 &549617377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 549617371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5043073116aea5742bad9a9e095474b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetText: {fileID: 1360585388}
+  sentences:
+  - "\uACE0\uB300\uC758 \uB300\uB959 \uCE7C\uD058\uB77C\uC5D0\uB294"
+  - "\uC804\uC124\uC801\uC778 \uC11C\uC801"
+  - "\uBBF8\uC801\uC758 \uC11C\uAC00 \uC874\uC7AC\uD55C\uB2E4."
+  - "\uC774 \uCC45\uC744 \uD1B5\uD574 \uC0AC\uB78C\uB4E4\uC740 \uB9C8\uBC95\uC744
+    \uC0AC\uC6A9\uD560 \uC218 \uC788\uC5C8\uACE0"
+  - "\uC218\uB9CE\uC740 \uD559\uC790\uC640 \uB9C8\uBC95\uC0AC\uB4E4\uC774 \uC774\uB97C
+    \uBC1C\uC804\uC2DC\uCF1C\uC654\uB2E4."
+  - "\uD558\uC9C0\uB9CC \uC5B4\uB290 \uB0A0, \uBBF8\uC801\uC758 \uC11C\uAC00 \uD63C\uB3C8\uC758
+    \uAD70\uC8FC \uC778\uD14C\uADF8\uB784\uC5D0 \uC758\uD574 \uCC22\uACA8\uC84C\uB2E4."
+  - "\uBBF8\uC801\uC758 \uC11C\uAC00 \uC0AC\uB77C\uC9C4 \uC774\uD6C4, \uB300\uB959\uC740
+    \uD63C\uB3C8\uC5D0 \uBE60\uC9C0\uAC8C \uB418\uC5C8\uC73C\uB2C8"
+  - "\uC774 \uC138\uACC4\uB97C \uAD6C\uD558\uAE30 \uC704\uD574\uC11C\uB294 \uBBF8\uC801\uC758
+    \uC11C\uB97C \uB418\uCC3E\uC544\uC57C \uD55C\uB2E4."
+  typeDelay: 0.05
+  deleteDelay: 0.02
 --- !u!1 &925766596
 GameObject:
   m_ObjectHideFlags: 0
@@ -734,6 +764,7 @@ GameObject:
   - component: {fileID: 1360585387}
   - component: {fileID: 1360585389}
   - component: {fileID: 1360585388}
+  - component: {fileID: 1360585390}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -749,7 +780,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1360585386}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -757,8 +788,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -80}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 0, y: -170}
+  m_SizeDelta: {x: 600, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1360585388
 MonoBehaviour:
@@ -782,8 +813,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uACE0\uB300\uC758 \uB300\uB959 \uCE7C\uD058\uB77C\uC5D0\uB294"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3a09a3df4bd7e5a4cacd496a68923e8d, type: 2}
+  m_sharedMaterial: {fileID: 937531872013878446, guid: 3a09a3df4bd7e5a4cacd496a68923e8d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -807,14 +838,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 24
+  m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_fontStyle: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -857,6 +888,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1360585386}
   m_CullTransparentMesh: 1
+--- !u!114 &1360585390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1360585386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5043073116aea5742bad9a9e095474b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetText: {fileID: 1360585388}
+  sentences:
+  - "\uACE0\uB300\uC758 \uB300\uB959 \uCE7C\uD058\uB77C\uC5D0\uB294"
+  - "\uC804\uC124\uC801\uC778 \uC11C\uC801"
+  - "\uBBF8\uC801\uC758 \uC11C\uAC00 \uC874\uC7AC\uD55C\uB2E4."
+  - "\uC774 \uCC45\uC744 \uD1B5\uD574 \uC0AC\uB78C\uB4E4\uC740 \uB9C8\uBC95\uC744
+    \uC0AC\uC6A9\uD560 \uC218 \uC788\uC5C8\uACE0"
+  - "\uC218\uB9CE\uC740 \uD559\uC790\uC640 \uB9C8\uBC95\uC0AC\uB4E4\uC774 \uC774\uB97C
+    \uBC1C\uC804\uC2DC\uCF1C\uC654\uB2E4."
+  - "\uD558\uC9C0\uB9CC \uC5B4\uB290 \uB0A0, \uBBF8\uC801\uC758 \uC11C\uAC00 \uD63C\uB3C8\uC758
+    \uAD70\uC8FC \uC778\uD14C\uADF8\uB784\uC5D0 \uC758\uD574 \uCC22\uACA8\uC84C\uB2E4."
+  - "\uBBF8\uC801\uC758 \uC11C\uAC00 \uC0AC\uB77C\uC9C4 \uC774\uD6C4, \uB300\uB959\uC740
+    \uD63C\uB3C8\uC5D0 \uBE60\uC9C0\uAC8C \uB418\uC5C8\uC73C\uB2C8"
+  - "\uC774 \uC138\uACC4\uB97C \uAD6C\uD558\uAE30 \uC704\uD574\uC11C\uB294 \uBBF8\uC801\uC758
+    \uC11C\uB97C \uB418\uCC3E\uC544\uC57C \uD55C\uB2E4."
+  typeDelay: 0.05
+  deleteDelay: 0.02
 --- !u!1 &1663051629
 GameObject:
   m_ObjectHideFlags: 0
@@ -916,7 +976,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
