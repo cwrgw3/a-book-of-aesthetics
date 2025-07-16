@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/KnightScene.unity
     guid: 4e7aafad28262814993920d765fc3f91
+  - enabled: 1
+    path: Assets/Scenes/CutSceneStart.unity
+    guid: 468ced55ab0b41c4aa32dfbb14ad845e
   m_configObjects: {}
