@@ -7,30 +7,30 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance { get; private set; }
 
     [Header("Collectible UI")]
-    [Tooltip("¿ìÃø »ó´Ü¿¡ Ç¥½ÃÇÒ ¼öÁý °³¼ö ÅØ½ºÆ® (TextMeshProUGUI)")]
+    [Tooltip("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ü¿ï¿½ Ç¥ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ø½ï¿½Æ® (TextMeshProUGUI)")]
     public TextMeshProUGUI collectibleText;
 
     [Header("Quiz UI")]
-    [Tooltip("¹ÌÀûºÐ ¹®Á¦ ÆÐ³Î")]
+    [Tooltip("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ð³ï¿½")]
     public GameObject questionPanel;
-    [Tooltip("¹ÌÀûºÐ ¹®Á¦ ³»¿ë Ç¥½Ã¿ë ÅØ½ºÆ® (TextMeshProUGUI)")]
+    [Tooltip("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½Ã¿ï¿½ ï¿½Ø½ï¿½Æ® (TextMeshProUGUI)")]
     public TextMeshProUGUI questionText;
-    [Tooltip("Á¤´ä ÀÔ·Â¿ë ÇÊµå (TMP_InputField)")]
+    [Tooltip("ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·Â¿ï¿½ ï¿½Êµï¿½ (TMP_InputField)")]
     public TMP_InputField answerInput;
-    [Tooltip("Á¤´ä Á¦Ãâ ¹öÆ°")]
+    [Tooltip("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°")]
     public Button submitButton;
 
-    // ¼öÁý °³¼ö Ä«¿îÆ®
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½Æ®
     int collectibleCount = 0;
     bool isQuizActive = false;
 
-    // ¿¹½Ã ¹®Á¦¿Í Á¤´ä
-    const string questionString = "¡ò2x dx = ?";
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    const string questionString = "âˆ« 2x dx = ?";
     const string correctAnswer = "x^2";
 
     void Awake()
     {
-        // ½Ì±ÛÅæ ÃÊ±âÈ­
+        // ï¿½Ì±ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -38,17 +38,17 @@ public class UIManager : MonoBehaviour
         }
         Instance = this;
 
-        // Quiz ÆÐ³Î ÃÊ±â ºñÈ°¼ºÈ­
+        // Quiz ï¿½Ð³ï¿½ ï¿½Ê±ï¿½ ï¿½ï¿½È°ï¿½ï¿½È­
         if (questionPanel != null)
             questionPanel.SetActive(false);
 
-        // Á¦Ãâ ¹öÆ° ÄÝ¹é ¿¬°á
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ° ï¿½Ý¹ï¿½ ï¿½ï¿½ï¿½ï¿½
         if (submitButton != null)
             submitButton.onClick.AddListener(OnSubmitAnswer);
     }
 
     /// <summary>
-    /// ÇÃ·¹ÀÌ¾î°¡ Á¾ÀÌ¸¦ ¸ÔÀ» ¶§¸¶´Ù È£Ãâ
+    /// ï¿½Ã·ï¿½ï¿½Ì¾î°¡ ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½
     /// </summary>
     public void AddCollectible(int num)
     {
@@ -56,74 +56,74 @@ public class UIManager : MonoBehaviour
             return;
 
         collectibleCount += num;
-
-        // ÅØ½ºÆ® °»½Å
+        // Debug.Log(collectibleText.text);
+        // ï¿½Ø½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
         if (collectibleText != null)
             collectibleText.text = collectibleCount.ToString();
 
-        // 2°³ ÀÌ»ó ¸ðÀÌ¸é ÄûÁî ½ÃÀÛ
+        // 2ï¿½ï¿½ ï¿½Ì»ï¿½ ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         if (collectibleCount >= 2)
             StartQuiz();
     }
 
     /// <summary>
-    /// ÄûÁî ½ÃÀÛ: °ÔÀÓ ÀÏ½ÃÁ¤Áö, ÆÐ³Î È°¼ºÈ­
+    /// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½: ï¿½ï¿½ï¿½ï¿½ ï¿½Ï½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½Ð³ï¿½ È°ï¿½ï¿½È­
     /// </summary>
     void StartQuiz()
     {
         isQuizActive = true;
 
-        // °ÔÀÓ Á¤Áö
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         Time.timeScale = 0f;
 
-        // ¹®Á¦ Ç¥½Ã
+        // ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½
         if (questionText != null)
             questionText.text = questionString;
 
-        // ÀÔ·Â ÃÊ±âÈ­
+        // ï¿½Ô·ï¿½ ï¿½Ê±ï¿½È­
         if (answerInput != null)
             answerInput.text = "";
 
-        // ÆÐ³Î È°¼ºÈ­
+        // ï¿½Ð³ï¿½ È°ï¿½ï¿½È­
         if (questionPanel != null)
             questionPanel.SetActive(true);
     }
 
     /// <summary>
-    /// Á¦Ãâ ¹öÆ° Å¬¸¯ ½Ã È£Ãâ
+    /// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ° Å¬ï¿½ï¿½ ï¿½ï¿½ È£ï¿½ï¿½
     /// </summary>
     void OnSubmitAnswer()
     {
         if (answerInput == null) return;
 
-        // »ç¿ëÀÚ°¡ ÀÔ·ÂÇÑ °ªÀ» ¼Ò¹®ÀÚ·Î ºñ±³
+        // ï¿½ï¿½ï¿½ï¿½Ú°ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ò¹ï¿½ï¿½Ú·ï¿½ ï¿½ï¿½
         string userAnswer = answerInput.text.Trim().ToLower();
 
         if (userAnswer == correctAnswer)
         {
-            // Á¤´ä Ã³¸®
+            // ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
             EndQuiz();
         }
         else
         {
-            // ¿À´ä ½Ã °£´Ü ÇÇµå¹é (¿øÇÑ´Ù¸é UI·Î)
-            Debug.LogWarning("¿À´äÀÔ´Ï´Ù. ´Ù½Ã ½ÃµµÇÏ¼¼¿ä.");
+            // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Çµï¿½ï¿½ (ï¿½ï¿½ï¿½Ñ´Ù¸ï¿½ UIï¿½ï¿½)
+            Debug.LogWarning("ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½. ï¿½Ù½ï¿½ ï¿½Ãµï¿½ï¿½Ï¼ï¿½ï¿½ï¿½.");
         }
     }
 
     /// <summary>
-    /// ÄûÁî Á¾·á: °ÔÀÓ Àç°³, Ä«¿îÆ® ÃÊ±âÈ­
+    /// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½: ï¿½ï¿½ï¿½ï¿½ ï¿½ç°³, Ä«ï¿½ï¿½Æ® ï¿½Ê±ï¿½È­
     /// </summary>
     void EndQuiz()
     {
-        // ÆÐ³Î ¼û±â±â
+        // ï¿½Ð³ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
         if (questionPanel != null)
             questionPanel.SetActive(false);
 
-        // °ÔÀÓ Àç°³
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ç°³
         Time.timeScale = 1f;
 
-        // ¼öÁý °³¼ö ÃÊ±âÈ­
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
         collectibleCount = 0;
         if (collectibleText != null)
             collectibleText.text = collectibleCount.ToString();
