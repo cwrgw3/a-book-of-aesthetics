@@ -677,7 +677,7 @@ MonoBehaviour:
     \uC0AC\uC6A9\uD560 \uC218 \uC788\uC5C8\uACE0"
   - "\uC218\uB9CE\uC740 \uD559\uC790\uC640 \uB9C8\uBC95\uC0AC\uB4E4\uC774 \uC774\uB97C
     \uBC1C\uC804\uC2DC\uCF1C\uC654\uB2E4."
-  - "\uD558\uC9C0\uB9CC \uC5B4\uB290 \uB0A0, \uBBF8\uC801\uC758 \uC11C\uAC00 \uD63C\uB3C8\uC758
+  - "\uD558\uC9C0\uB9CC \uC5B4\uB290 \uB0A0, \uBBF8\uC801\uC758 \uC11C\uAC00\n\uD63C\uB3C8\uC758
     \uAD70\uC8FC \uC778\uD14C\uADF8\uB784\uC5D0 \uC758\uD574 \uCC22\uACA8\uC84C\uB2E4."
   - "\uBBF8\uC801\uC758 \uC11C\uAC00 \uC0AC\uB77C\uC9C4 \uC774\uD6C4, \uB300\uB959\uC740
     \uD63C\uB3C8\uC5D0 \uBE60\uC9C0\uAC8C \uB418\uC5C8\uC73C\uB2C8"
@@ -846,7 +846,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 1
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -856,7 +856,7 @@ MonoBehaviour:
   m_charWidthMaxAdj: 0
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
+  m_overflowMode: 2
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
