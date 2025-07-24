@@ -3,14 +3,14 @@ using UnityEngine;
 public class MiddleSlimeMove : MonoBehaviour
 {
     [Header("Health")]
-    public int maxHealth = 3;    // 최대 체력
-    int currentHealth;          // 현재 체력
+    public int maxHealth = 3;
+    int currentHealth;
 
     [Header("Damage Knockback")]
-    public float damageKnockbackForce = 10f;  // 피격 시 넉백 힘
+    public float damageKnockbackForce = 10f;
 
     [Header("Drop Item")]
-    public GameObject collectiblePrefab;      // 죽을 때 생성할 아이템 프리팹
+    public GameObject collectiblePrefab;
 
     [Header("Move / Jump")]
     public float jumpPower = 5f;
@@ -30,7 +30,6 @@ public class MiddleSlimeMove : MonoBehaviour
         anim = GetComponent<Animator>();
         currentHealth = maxHealth;
 
-        // 같은 레이어끼리 충돌 무시
         int slimeLayer = LayerMask.NameToLayer("Enemy");
         Physics2D.IgnoreLayerCollision(slimeLayer, slimeLayer);
     }
@@ -49,6 +48,7 @@ public class MiddleSlimeMove : MonoBehaviour
                 jumpTimer = 0f;
             }
         }
+
         FlipDirection();
     }
 
@@ -83,6 +83,12 @@ public class MiddleSlimeMove : MonoBehaviour
             isGrounded = true;
             anim.SetBool("isGrounded", true);
         }
+
+        // ✅ 벽에 부딪히면 방향 전환
+        if (col.collider.CompareTag("Wall"))
+        {
+            movingRight = !movingRight;
+        }
     }
 
     /// <summary>
@@ -90,26 +96,22 @@ public class MiddleSlimeMove : MonoBehaviour
     /// </summary>
     public void TakeDamage(int damage, Vector2 sourcePos)
     {
-        // 1) 체력 감소
         currentHealth -= damage;
         Debug.Log($"Slime HP: {currentHealth}/{maxHealth}");
 
-        // 2) 넉백
         Vector2 knockDir = ((Vector2)transform.position - sourcePos).normalized;
         rigid.velocity = Vector2.zero;
         rigid.AddForce(knockDir * damageKnockbackForce, ForceMode2D.Impulse);
 
-        // 3) 사망 처리
         if (currentHealth <= 0)
             Die();
     }
 
     void Die()
     {
-        // 아이템 드롭
         if (collectiblePrefab != null)
             Instantiate(collectiblePrefab, transform.position, Quaternion.identity);
-        // 슬라임 제거
+
         Destroy(gameObject);
     }
 }
