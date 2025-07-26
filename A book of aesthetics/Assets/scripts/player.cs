@@ -104,7 +104,7 @@ public class PlayerMove : MonoBehaviour
     {
         isBeingHit = true;
         anim.SetBool("isHit", true);
-
+        
         GetComponent<PlayerHealth>()?.TakeDamage(1, enemy.position);
 
         yield return new WaitForSeconds(hitRecoverTime);
@@ -121,7 +121,7 @@ public class PlayerMove : MonoBehaviour
         attackCol.enabled = true;
 
         anim.Play("PlayerAttack1", 0, 0f);
-        audioSource.PlayOneShot(hitSound);
+        // audioSource.PlayOneShot(hitSound);
         yield return new WaitForSeconds(attack1Duration);
 
         if (queuedCombo)
@@ -145,6 +145,7 @@ public class PlayerMove : MonoBehaviour
             var slime = other.GetComponent<MiddleSlimeMove>();
             if (slime != null)
             {
+                audioSource.PlayOneShot(hitSound);
                 slime.TakeDamage(1, transform.position);
 
                 var camFollow = Camera.main.GetComponent<CameraFollow>();
@@ -158,6 +159,7 @@ public class PlayerMove : MonoBehaviour
             var golem = other.GetComponent<GolemMove>();
             if (golem != null)
             {
+                audioSource.PlayOneShot(hitSound);
                 golem.TakeDamage(1, transform.position);
 
                 var camFollow = Camera.main.GetComponent<CameraFollow>();
