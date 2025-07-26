@@ -7289,7 +7289,8 @@ MonoBehaviour:
   attack2Duration: 0.2
   moveSpeed: 10
   jumpPower: 12
-  hitRecoverTime: 0.5
+  hitRecoverTime: 0.3
+  hitSound: {fileID: 8300000, guid: b86bf91333b7a99468dd94f7ef0f4c58, type: 3}
 --- !u!50 &1170400638
 Rigidbody2D:
   serializedVersion: 4

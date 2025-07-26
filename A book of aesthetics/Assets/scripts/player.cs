@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Rigidbody2D), typeof(AudioSource))]
 public class PlayerMove : MonoBehaviour
 {
     Rigidbody2D rigid;
@@ -26,6 +26,9 @@ public class PlayerMove : MonoBehaviour
     bool queuedCombo = false;
     float h = 0f;
 
+    [Header("Audio Settings")]
+    public AudioClip hitSound;       // Inspector에서 .wav 파일 할당
+    private AudioSource audioSource;
     private CircleCollider2D attackCol;
 
     void Awake()
@@ -33,6 +36,7 @@ public class PlayerMove : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
 
         if (attackPoint == null) attackPoint = transform.GetChild(0);
         attackCol = attackPoint.GetComponent<CircleCollider2D>();
@@ -117,6 +121,7 @@ public class PlayerMove : MonoBehaviour
         attackCol.enabled = true;
 
         anim.Play("PlayerAttack1", 0, 0f);
+        audioSource.PlayOneShot(hitSound);
         yield return new WaitForSeconds(attack1Duration);
 
         if (queuedCombo)
@@ -142,7 +147,6 @@ public class PlayerMove : MonoBehaviour
             {
                 slime.TakeDamage(1, transform.position);
 
-                // 카메라 흔들기 호출
                 var camFollow = Camera.main.GetComponent<CameraFollow>();
                 if (camFollow != null)
                     camFollow.StartCoroutine(camFollow.ShakeCamera());
@@ -156,11 +160,10 @@ public class PlayerMove : MonoBehaviour
             {
                 golem.TakeDamage(1, transform.position);
 
-                // 카메라 흔들기 호출
                 var camFollow = Camera.main.GetComponent<CameraFollow>();
                 if (camFollow != null)
                     camFollow.StartCoroutine(camFollow.ShakeCamera());
-                    
+
                 return;
             }
         }
