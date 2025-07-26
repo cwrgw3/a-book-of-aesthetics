@@ -85,7 +85,7 @@ public class PlayerMove : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.collider.CompareTag("Ground"))
+        if (col.collider.CompareTag("Ground") || col.collider.CompareTag("Wall"))
         {
             isGrounded = true;
             anim.SetBool("isJumping", false);
@@ -141,6 +141,12 @@ public class PlayerMove : MonoBehaviour
             if (slime != null)
             {
                 slime.TakeDamage(1, transform.position);
+
+                // 카메라 흔들기 호출
+                var camFollow = Camera.main.GetComponent<CameraFollow>();
+                if (camFollow != null)
+                    camFollow.StartCoroutine(camFollow.ShakeCamera());
+
                 return;
             }
 
@@ -149,6 +155,12 @@ public class PlayerMove : MonoBehaviour
             if (golem != null)
             {
                 golem.TakeDamage(1, transform.position);
+
+                // 카메라 흔들기 호출
+                var camFollow = Camera.main.GetComponent<CameraFollow>();
+                if (camFollow != null)
+                    camFollow.StartCoroutine(camFollow.ShakeCamera());
+                    
                 return;
             }
         }

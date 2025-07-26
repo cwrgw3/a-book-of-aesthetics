@@ -1,22 +1,48 @@
+// CameraFollow.cs
+using System.Collections;
 using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    public Transform target;         // µû¶ó°¥ ´ë»ó (ÇÃ·¹ÀÌ¾î)
-    public Vector3 offset = new Vector3(0, 0, -10f); // Ä«¸Ş¶ó ±âº» À§Ä¡ ¿ÀÇÁ¼Â
-    public float smoothSpeed = 5f;   // µû¶ó°¡´Â ¼Óµµ (ºÎµå·´°Ô)
+    public Transform target;
+    public Vector3 offset = new Vector3(0, 0, -10f);
+    public float smoothSpeed = 5f;
+
+    public float ShakeTime;    // í”ë“¤ë¦´ ì‹œê°„
+    public float ShakePower;   // í”ë“¤ë¦´ ê°•ë„
+
+    // ì´ ë³€ìˆ˜ í•˜ë‚˜ ì¶”ê°€
+    private Vector3 shakeOffset = Vector3.zero;
 
     void LateUpdate()
     {
         if (target == null) return;
 
-        // ¸ñÇ¥ À§Ä¡ °è»ê (ÇÃ·¹ÀÌ¾î À§Ä¡ + ¿ÀÇÁ¼Â)
-        Vector3 desiredPosition = target.position + offset;
+        // 1) ëª©í‘œ ìœ„ì¹˜ ê³„ì‚°
+        Vector3 desiredPos = target.position + offset;
 
-        // ºÎµå·´°Ô º¸°£ÇÏ¿© µû¶ó°¨
-        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed * Time.deltaTime);
+        // 2) ë¶€ë“œëŸ¬ìš´ ë³´ê°„
+        Vector3 smoothedPos = Vector3.Lerp(transform.position, desiredPos, smoothSpeed * Time.deltaTime);
 
-        // Ä«¸Ş¶ó À§Ä¡ Àû¿ë
-        transform.position = smoothedPosition;
+        // 3) Shake ì˜¤í”„ì…‹ì„ ë”í•´ì„œ ìµœì¢… ìœ„ì¹˜ ê²°ì •
+        transform.position = smoothedPos + shakeOffset;
+    }
+
+    public IEnumerator ShakeCamera()
+    {
+        float elapsed = 0f;
+
+        // ì›ë˜ offsetì€ ê·¸ëŒ€ë¡œ ë‘ê³ , shakeOffsetë§Œ ë³€ê²½
+        while (elapsed < ShakeTime)
+        {
+            Vector2 shake2D = Random.insideUnitCircle * ShakePower;
+            shakeOffset = new Vector3(shake2D.x, shake2D.y, 0f);
+
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        // í”ë“¤ê¸° ëë‚˜ë©´ ì˜¤í”„ì…‹ ì´ˆê¸°í™”
+        shakeOffset = Vector3.zero;
     }
 }

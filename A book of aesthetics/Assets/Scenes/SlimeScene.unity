@@ -480,6 +480,8 @@ MonoBehaviour:
   target: {fileID: 1170400635}
   offset: {x: 0, y: 0, z: -10}
   smoothSpeed: 5
+  ShakeTime: 0.2
+  ShakePower: 0.015
 --- !u!1 &121598476
 GameObject:
   m_ObjectHideFlags: 0
@@ -2304,10 +2306,10 @@ RectTransform:
   - {fileID: 1263122948}
   m_Father: {fileID: 1065524188}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 1080, y: 608}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &442464500
 MonoBehaviour:
