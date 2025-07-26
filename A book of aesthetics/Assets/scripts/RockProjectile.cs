@@ -18,7 +18,7 @@ public class RockProjectile : MonoBehaviour
     public void SetDirection(Vector2 dir)
     {
         moveDir = dir.normalized;
-        rb.velocity = moveDir * speed;  // Rigidbody¸¦ ÅëÇØ ÀÌµ¿
+        rb.velocity = moveDir * speed;  // Rigidbodyï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
         Destroy(gameObject, lifetime);
     }
 

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 86d3c5b4e57574a4a92ff828841db088
+guid: fec9799f8aac8934ea38af958323d1a6
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Big Slime_0
+      name: BigSlime_Stand1_0
       rect:
         serializedVersion: 2
-        x: 463
-        y: 47
-        width: 263
-        height: 172
+        x: 617
+        y: 63
+        width: 353
+        height: 228
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,8 +111,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 93a507e93d419bf47ae2e2aced18e6e7
-      internalID: -1355169125
+      spriteID: 42f6e1fb00ea53747a314b451b9b9896
+      internalID: -1389660874
       vertices: []
       indices: 
       edges: []
@@ -128,7 +128,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Big Slime_0: -1355169125
+      BigSlime_Stand1_0: -1389660874
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

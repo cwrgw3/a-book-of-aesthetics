@@ -1,10 +1,19 @@
+using System.Collections;
 using UnityEngine;
 
 public class BigSlimeAttack : MonoBehaviour
 {
-    public GameObject rockPrefab;         // ¹ß»çÇÒ µ¹ ÇÁ¸®ÆÕ
-    public float shootInterval = 3f;      // ¹ß»ç ÁÖ±â (ÃÊ)
-    public float rockSpeed = 7f;          // µ¹ ¼Óµµ
+    [Header("í”„ë¦¬íŒ¹ & ë°œì‚¬ ìœ„ì¹˜")]
+    public GameObject rockPrefab;    // ì‹¤ì œ ë°”ìœ„ í”„ë¦¬íŒ¹
+    public Transform firePoint;      // ë°”ìœ„ê°€ íŠ€ì–´ë‚˜ì˜¬ ìœ„ì¹˜
+
+    [Header("ë°œì‚¬ ì„¤ì •")]
+    public float shootInterval = 3f;
+    public float rockSpeed = 7f;
+    public float extraAnimDelay = 1f;
+
+    [Header("Animation Settings")]
+    // public AnimationClip shootClip;  // ë°œì‚¬ ì• ë‹ˆë©”ì´ì…˜ í´ë¦½ (Inspectorì—ì„œ í• ë‹¹)
 
     private Transform player;
     private float shootTimer;
@@ -29,27 +38,40 @@ public class BigSlimeAttack : MonoBehaviour
 
     void ShootAtPlayer()
     {
-        if (rockPrefab == null || player == null) return;
+        if (rockPrefab == null || firePoint == null)
+        {
+            Debug.LogWarning("rockPrefab ë˜ëŠ” firePointê°€ í• ë‹¹ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤!");
+            return;
+        }
 
-        // µ¹ »ı¼º À§Ä¡ = BigSlime À§Ä¡
-        Vector2 spawnPos = transform.position;
-        GameObject rock = Instantiate(rockPrefab, spawnPos, Quaternion.identity);
+        // 1) rockPrefab ì¸ìŠ¤í„´ìŠ¤í™”
+        GameObject rock = Instantiate(
+            rockPrefab,
+            firePoint.position,
+            Quaternion.identity
+        );
 
-        // ¹æÇâ = ÇÃ·¹ÀÌ¾î¸¦ ÇâÇÑ ´ÜÀ§ º¤ÅÍ
-        Vector2 direction = (player.position - transform.position).normalized;
-
-        // ¼Óµµ Àû¿ë
+        // 2) ë°©í–¥ ê³„ì‚°
+        Vector2 dir = (player.position - firePoint.position).normalized;
+        Mumchau();
+        // 3) Rigidbody2Dì— í˜ ì ìš© (ì¤‘ë ¥ ë¬´ì‹œ)
         Rigidbody2D rb = rock.GetComponent<Rigidbody2D>();
         if (rb != null)
         {
-            rb.velocity = direction * rockSpeed;
+            rb.gravityScale = 0f;
+            rb.AddForce(dir * rockSpeed, ForceMode2D.Impulse);
+        }
+        else
+        {
+            Debug.LogWarning("rockPrefabì— Rigidbody2Dê°€ ì—†ìŠµë‹ˆë‹¤!");
         }
 
-        // (¼±ÅÃ) ¾Ö´Ï¸ŞÀÌ¼Ç Àç»ı
-        Animator anim = GetComponent<Animator>();
-        if (anim != null)
-        {
-            anim.SetTrigger("Shoot");
-        }
     }
+
+    private IEnumerator Mumchau()
+    {
+        yield return new WaitForSeconds(extraAnimDelay);
+    }
+
+    
 }
