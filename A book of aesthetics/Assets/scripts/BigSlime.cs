@@ -53,7 +53,9 @@ public class BigSlimeAttack : MonoBehaviour
 
         // 2) 방향 계산
         Vector2 dir = (player.position - firePoint.position).normalized;
-        Mumchau();
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg + 170f;
+        rock.transform.rotation = Quaternion.Euler(0f, 0f, angle);
+
         // 3) Rigidbody2D에 힘 적용 (중력 무시)
         Rigidbody2D rb = rock.GetComponent<Rigidbody2D>();
         if (rb != null)
@@ -66,11 +68,6 @@ public class BigSlimeAttack : MonoBehaviour
             Debug.LogWarning("rockPrefab에 Rigidbody2D가 없습니다!");
         }
 
-    }
-
-    private IEnumerator Mumchau()
-    {
-        yield return new WaitForSeconds(extraAnimDelay);
     }
 
     
